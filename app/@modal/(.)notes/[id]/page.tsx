@@ -1,4 +1,4 @@
-import { getSingleNote } from "@/lib/api";
+import { getSingleNote } from "@/lib/api/api";
 
 import NotePreviewClient from "./NotePreview.client";
 import {

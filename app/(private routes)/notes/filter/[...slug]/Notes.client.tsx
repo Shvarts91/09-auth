@@ -10,9 +10,10 @@ import { useDebounce } from "use-debounce";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import Loader from "@/components/Loader/Loader";
 import NoteList from "@/components/NoteList/NoteList";
-import { fetchNotes, NotesResponse } from "@/lib/api";
 
 import Link from "next/link";
+import { NotesResponse } from "@/types/note";
+import { fetchNotes } from "@/lib/api/clientApi";
 
 interface NotesProps {
   initialData: NotesResponse;

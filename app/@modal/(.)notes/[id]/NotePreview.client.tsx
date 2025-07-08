@@ -4,7 +4,7 @@ import Modal from "@/components/Modal/Modal";
 import { useParams, useRouter } from "next/navigation";
 import css from "./NotePreview.module.css";
 import { useQuery } from "@tanstack/react-query";
-import { getSingleNote } from "@/lib/api";
+import { getSingleNote } from "@/lib/api/api";
 
 export default function NotePreviewClient() {
   const router = useRouter();
