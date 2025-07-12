@@ -1,15 +1,15 @@
-import Link from "next/link";
-import css from "./Header.module.css";
-import TagsMenu from "../TagsMenu/TagsMenu";
-import AuthNavigation from "../AuthNavigation/AuthNavigation";
+import Link from 'next/link';
+import css from './Header.module.css';
+import TagsMenu from '../TagsMenu/TagsMenu';
+import AuthNavigation from '../AuthNavigation/AuthNavigation';
 
-const Header = async () => {
+const Header = () => {
   const tags = [
-    { id: 1, name: "Todo" },
-    { id: 2, name: "Work" },
-    { id: 3, name: "Personal" },
-    { id: 4, name: "Meeting" },
-    { id: 5, name: "Shopping" },
+    { id: 1, name: 'Todo' },
+    { id: 2, name: 'Work' },
+    { id: 3, name: 'Personal' },
+    { id: 4, name: 'Meeting' },
+    { id: 5, name: 'Shopping' },
   ];
 
   return (

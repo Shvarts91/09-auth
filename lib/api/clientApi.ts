@@ -1,9 +1,7 @@
-import {  User } from "@/types/user";
-import { nextServer } from "./api";
-import { type AxiosResponse } from "axios";
-import type { CreateNoteType, Note, NotesResponse } from "../../types/note";
-
-
+import { User } from '@/types/user';
+import { nextServer } from './api';
+import { type AxiosResponse } from 'axios';
+import type { CreateNoteType, Note, NotesResponse } from '../../types/note';
 
 export interface LoginRequest {
   email: string;
@@ -12,7 +10,7 @@ export interface LoginRequest {
 
 export const fetchNotes = async (
   page: number = 1,
-  search: string = "",
+  search: string = '',
   tag?: string
 ): Promise<NotesResponse> => {
   const perPage = 12;
@@ -26,16 +24,13 @@ export const fetchNotes = async (
     params.search = search;
   }
 
-  if (tag && tag.toLowerCase() !== "all") {
+  if (tag && tag.toLowerCase() !== 'all') {
     params.tag = tag;
   }
 
   const response: AxiosResponse<NotesResponse> = await nextServer.get(
-    "/notes",
+    '/notes',
     {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-      },
       params,
     }
   );
@@ -44,53 +39,28 @@ export const fetchNotes = async (
 };
 
 export const createNote = async (payload: CreateNoteType): Promise<Note> => {
-  const response = await nextServer.post<Note>("/notes", payload, {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
-  });
+  const response = await nextServer.post<Note>('/notes', payload);
 
   return response.data;
 };
 
-export const deleteNoteById = async (id: number): Promise<Note> => {
-  const response = await nextServer.delete<Note>(
-    `/notes/:${id}`,
-
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-      },
-    }
-  );
-
+export const deleteNoteById = async (id: string): Promise<Note> => {
+  const response = await nextServer.delete<Note>(`/notes/${id}`);
   return response.data;
 };
 
-export const getSingleNote = async (id: number): Promise<Note> => {
-  const response = await nextServer.get<Note>(`/notes/:${id}`, {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
-  });
+export const getSingleNote = async (id: string): Promise<Note> => {
+  const response = await nextServer.get<Note>(`/notes/${id}`);
   return response.data;
 };
 
 export const register = async (data: LoginRequest) => {
-  const res = await nextServer.post<User>("/auth/register", data, {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
-  });
+  const res = await nextServer.post<User>('/auth/register', data);
   return res.data;
 };
 
 export const login = async (data: LoginRequest) => {
-  const response = await nextServer.post<User>("/auth/login", data, {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-    },
-  });
+  const response = await nextServer.post<User>('/auth/login', data);
   return response.data;
 };
 
@@ -99,14 +69,14 @@ type CheckSessionRequest = {
 };
 
 export const checkSession = async () => {
-  const res = await nextServer.get<CheckSessionRequest>("/auth/session");
+  const res = await nextServer.get<CheckSessionRequest>('/auth/session');
   return res.data.success;
 };
 
 export const getMe = async () => {
-  const { data } = await nextServer.get<User>("/auth/me");
+  const { data } = await nextServer.get<User>('/users/me');
   return data;
 };
 export const logout = async (): Promise<void> => {
-  await nextServer.post("/auth/logout");
+  await nextServer.post('/auth/logout');
 };

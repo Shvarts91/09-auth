@@ -1,7 +1,7 @@
-type NoteTag = "Work" | "Personal" | "Shopping" | "Meeting" | "Todo";
+type NoteTag = 'Work' | 'Personal' | 'Shopping' | 'Meeting' | 'Todo';
 
 export interface Note {
-  id: number;
+  id: string;
   title: string;
   content: string;
   tag: NoteTag;
@@ -17,7 +17,7 @@ export interface NotesResponse {
 export interface CreateNoteType {
   title: string;
   content?: string;
-  tag: "" | NoteTag;
+  tag: '' | NoteTag;
 }
 
 export type Category = {

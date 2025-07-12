@@ -1,20 +1,15 @@
-import Image from "next/image";
-import css from "./EditProfilePage.module.css";
+import css from './EditProfilePage.module.css';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: 'Edit Profile',
+  description: 'Edit profile page',
+};
 const EditProfilePage = () => {
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>
         <h1 className={css.formTitle}>Edit Profile</h1>
-
-        <Image
-          src="avatar"
-          alt="User Avatar"
-          width={120}
-          height={120}
-          className={css.avatar}
-        />
-
         <form className={css.profileInfo}>
           <div className={css.usernameWrapper}>
             <label htmlFor="username">Username:</label>

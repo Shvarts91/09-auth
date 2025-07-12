@@ -1,10 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import css from "./NoteList.module.css";
+import css from './NoteList.module.css';
 
-import { Note } from "@/types/note";
-import Link from "next/link";
-import { deleteNoteById } from "@/lib/api/clientApi";
+import { Note } from '@/types/note';
+import Link from 'next/link';
+import { deleteNoteById } from '@/lib/api/clientApi';
 
 interface NoteListProps {
   list: Note[];
@@ -15,15 +15,15 @@ const NoteList = ({ list }: NoteListProps) => {
   const mutation = useMutation({
     mutationFn: deleteNoteById,
     onSuccess: (data) => {
-      console.log("Notate delete:", data);
-      queryClient.invalidateQueries({ queryKey: ["noteList"] });
+      console.log('Notate delete:', data);
+      queryClient.invalidateQueries({ queryKey: ['noteList'] });
     },
     onError: (error) => {
-      console.error("Error receiving note:", error);
+      console.error('Error receiving note:', error);
     },
   });
 
-  const deleteNoteClickButton = (id: number) => {
+  const deleteNoteClickButton = (id: string) => {
     mutation.mutate(id);
   };
   return (

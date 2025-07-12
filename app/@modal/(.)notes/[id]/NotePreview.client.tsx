@@ -1,19 +1,17 @@
-"use client";
-import Modal from "@/components/Modal/Modal";
+'use client';
+import Modal from '@/components/Modal/Modal';
 
-import { useParams, useRouter } from "next/navigation";
-import css from "./NotePreview.module.css";
-import { useQuery } from "@tanstack/react-query";
-import { getSingleNote } from "@/lib/api/api";
+import { useRouter } from 'next/navigation';
+import css from './NotePreview.module.css';
+import { useQuery } from '@tanstack/react-query';
+import { getSingleNote } from '@/lib/api/clientApi';
 
-export default function NotePreviewClient() {
+export default function NotePreviewClient({ id }: { id: string }) {
   const router = useRouter();
   const closeModal = () => router.back();
-  const params = useParams<{ id: string }>();
-  const id = Number(params.id);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["notePreview", id],
+    queryKey: ['notePreview', id],
     queryFn: () => getSingleNote(id),
     refetchOnMount: false,
   });

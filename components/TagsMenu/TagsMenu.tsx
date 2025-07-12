@@ -1,18 +1,20 @@
-"use client";
-import Link from "next/link";
-import css from "./TagsMenu.module.css";
-import { useState } from "react";
-import { Category } from "@/types/note";
+'use client';
+import Link from 'next/link';
+import css from './TagsMenu.module.css';
+import { useState } from 'react';
+import { Category } from '@/types/note';
+import { useAuthStore } from '@/lib/store/userStore';
 
 type TagsMenuProps = {
   categories: Category[];
 };
 
 const TagsMenu = ({ categories }: TagsMenuProps) => {
+  const { isAuthenticated } = useAuthStore();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  return (
+  return isAuthenticated ? (
     <div className={css.menuContainer}>
       <button onClick={toggle} className={css.menuButton}>
         Notes ▾
@@ -42,6 +44,6 @@ const TagsMenu = ({ categories }: TagsMenuProps) => {
         </ul>
       )}
     </div>
-  );
+  ) : null;
 };
 export default TagsMenu;

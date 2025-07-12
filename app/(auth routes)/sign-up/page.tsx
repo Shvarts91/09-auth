@@ -1,29 +1,33 @@
-"use client";
+'use client';
 
-import css from "./SignUpPage.module.css";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { LoginRequest, register } from "@/lib/api/clientApi";
+import css from './SignUpPage.module.css';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { LoginRequest, register } from '@/lib/api/clientApi';
+import { useAuthStore } from '@/lib/store/userStore';
 
 const SignUpPage = () => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const setUser = useAuthStore((state) => state.setUser);
+
   const handleSubmit = async (formData: FormData) => {
     try {
-      const email = formData.get("email")?.toString() || "";
-      const password = formData.get("password")?.toString() || "";
+      const email = formData.get('email')?.toString() || '';
+      const password = formData.get('password')?.toString() || '';
 
       const values: LoginRequest = { email, password };
 
       const response = await register(values);
       if (response) {
-        router.push("/profile");
+        setUser(response);
+        router.push('/profile');
       } else {
-        setError("Invalid email or password");
+        setError('Invalid email or password');
       }
     } catch (error) {
       console.log(error);
-      setError("Invalid email or password");
+      setError('Invalid email or password');
     }
   };
   return (

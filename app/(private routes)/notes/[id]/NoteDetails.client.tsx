@@ -1,17 +1,12 @@
-"use client";
+'use client';
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
+import css from './NoteDetails.module.css';
+import { getSingleNote } from '@/lib/api/clientApi';
 
-import { useParams } from "next/navigation";
-import css from "./NoteDetails.module.css";
-import { getSingleNote } from "@/lib/api/clientApi";
-
-const NoteDetailsClient = () => {
-  const params = useParams<{ id: string }>();
-  const id = Number(params.id);
-
+const NoteDetailsClient = ({ id }: { id: string }) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["note", id],
+    queryKey: ['note', id],
     queryFn: () => getSingleNote(id),
     refetchOnMount: false,
   });
