@@ -1,9 +1,9 @@
-'use client';
-import Link from 'next/link';
-import css from './TagsMenu.module.css';
-import { useState } from 'react';
-import { Category } from '@/types/note';
-import { useAuthStore } from '@/lib/store/userStore';
+"use client";
+import Link from "next/link";
+import css from "./TagsMenu.module.css";
+import { useState } from "react";
+import { Category } from "@/types/note";
+import { useAuthStore } from "@/lib/store/authStore";
 
 type TagsMenuProps = {
   categories: Category[];

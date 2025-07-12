@@ -1,10 +1,10 @@
-'use client';
-import { useAuthStore } from '@/lib/store/userStore';
-import css from './EditProfilePage.module.css';
-import { updateMe } from '@/lib/api/clientApi';
-import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+"use client";
+import { useAuthStore } from "@/lib/store/authStore";
+import css from "./EditProfilePage.module.css";
+import { updateMe } from "@/lib/api/clientApi";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function EditProfileClient() {
   const { user, setUser } = useAuthStore();
@@ -14,16 +14,16 @@ export default function EditProfileClient() {
   });
 
   const handleSaveUser = async (formData: FormData) => {
-    const username = formData.get('username') as string;
+    const username = formData.get("username") as string;
 
     try {
       const data = await mutateAsync({ username });
       if (data) {
         setUser(data);
-        router.push('/profile');
+        router.push("/profile");
       }
     } catch (error) {
-      console.error('Oops, some error:', error);
+      console.error("Oops, some error:", error);
     }
   };
 
@@ -37,7 +37,7 @@ export default function EditProfileClient() {
         <h1 className={css.formTitle}>Edit Profile</h1>
         <Image
           src={user.avatar}
-          alt={user.username ?? ''}
+          alt={user.username ?? ""}
           width={120}
           height={120}
           className={css.avatar}
@@ -62,12 +62,12 @@ export default function EditProfileClient() {
               className={css.saveButton}
               disabled={isPending}
             >
-              {isPending ? 'Saving...' : 'Save'}
+              {isPending ? "Saving..." : "Save"}
             </button>
             <button
               type="button"
               className={css.cancelButton}
-              onClick={() => router.push('/profile')}
+              onClick={() => router.push("/profile")}
             >
               Cancel
             </button>
