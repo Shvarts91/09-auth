@@ -77,6 +77,12 @@ export const getMe = async () => {
   const { data } = await nextServer.get<User>('/users/me');
   return data;
 };
+
+export const updateMe = async (user: Pick<User, 'username'>) => {
+  const { data } = await nextServer.patch<User>('/users/me', user);
+  return data;
+};
+
 export const logout = async (): Promise<void> => {
   await nextServer.post('/auth/logout');
 };

@@ -1,8 +1,6 @@
-// app/api/notes/[id]/route.ts
-
-import { NextRequest, NextResponse } from 'next/server';
-import { api } from '../../api';
-import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from "next/server";
+import { api } from "../../api";
+import { cookies } from "next/headers";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -21,7 +19,7 @@ export async function GET(request: NextRequest, { params }: Props) {
     return NextResponse.json(data);
   }
 
-  return NextResponse.json({ error: 'Failed to fetch note' }, { status: 500 });
+  return NextResponse.json({ error: "Failed to fetch note" }, { status: 500 });
 }
 
 export async function DELETE(request: NextRequest, { params }: Props) {
@@ -35,5 +33,5 @@ export async function DELETE(request: NextRequest, { params }: Props) {
   if (data) {
     return NextResponse.json(data);
   }
-  return NextResponse.json({ error: 'Failed to delete note' }, { status: 500 });
+  return NextResponse.json({ error: "Failed to delete note" }, { status: 500 });
 }
