@@ -2,15 +2,10 @@
 import { updateMe } from "@/lib/api/clientApi";
 import { useAuthStore } from "@/lib/store/authStore";
 import { useMutation } from "@tanstack/react-query";
-import { Metadata } from "next";
+
 import css from "./EditProfilePage.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-export const metadata: Metadata = {
-  title: "Edit Profile",
-  description: "Edit profile page",
-};
 
 const EditProfilePage = () => {
   const { user, setUser } = useAuthStore();
