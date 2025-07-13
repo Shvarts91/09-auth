@@ -1,11 +1,11 @@
-import { cookies } from 'next/headers';
-import { nextServer } from './api';
-import { User } from '@/types/user';
-import { Note, NotesResponse } from '@/types/note';
+import { cookies } from "next/headers";
+import { nextServer } from "./api";
+import { User } from "@/types/user";
+import { Note, NotesResponse } from "@/types/note";
 
-export const checkServerSession = async () => {
+export const checkSession = async () => {
   const cookieStore = await cookies();
-  const response = await nextServer.get('/auth/session', {
+  const response = await nextServer.get("/auth/session", {
     headers: {
       Cookie: cookieStore.toString(),
     },
@@ -16,7 +16,7 @@ export const checkServerSession = async () => {
 
 export const getServerMe = async (): Promise<User> => {
   const cookieStore = await cookies();
-  const { data } = await nextServer.get('/users/me', {
+  const { data } = await nextServer.get("/users/me", {
     headers: {
       Cookie: cookieStore.toString(),
     },
@@ -27,7 +27,7 @@ export const getServerMe = async (): Promise<User> => {
 
 export const getServerNotes = async (
   page: number = 1,
-  search: string = '',
+  search: string = "",
   tag?: string
 ): Promise<NotesResponse> => {
   const cookieStore = await cookies();
@@ -42,11 +42,11 @@ export const getServerNotes = async (
     params.search = search;
   }
 
-  if (tag && tag.toLowerCase() !== 'all') {
+  if (tag && tag.toLowerCase() !== "all") {
     params.tag = tag;
   }
 
-  const { data } = await nextServer.get('/notes', {
+  const { data } = await nextServer.get("/notes", {
     params,
     headers: {
       Cookie: cookieStore.toString(),
