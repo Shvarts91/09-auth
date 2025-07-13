@@ -3,7 +3,7 @@ import { nextServer } from "./api";
 import { User } from "@/types/user";
 import { Note, NotesResponse } from "@/types/note";
 
-export const checkSession = async () => {
+export const checkServerSession = async () => {
   const cookieStore = await cookies();
   const response = await nextServer.get("/auth/session", {
     headers: {

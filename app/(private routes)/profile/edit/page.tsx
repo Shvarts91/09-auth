@@ -4,7 +4,6 @@ import { useAuthStore } from "@/lib/store/authStore";
 import { useMutation } from "@tanstack/react-query";
 import { Metadata } from "next";
 import css from "./EditProfilePage.module.css";
-// import EditProfileClient from './EditProfile.client';
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
